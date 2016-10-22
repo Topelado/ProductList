@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/w3.css">
+    <script src="js/knockout.js"></script>
+    <script src="js/product.js"></script>
+    <script src="js/jquery.js"></script>
+    <title>Lista de Produtos</title>
+  </head>
+
+  <body>
+
+    <nav class="w3-sidenav w3-animate-left w3-card-8 w3-collapse w3-light-gray w3-large" style="width:200px" id="mySidenav">
+      <a href="#" onclick="w3_close()" class="w3-closenav w3-hide-large">Close &times;</a>
+      <div class="w3-container w3-small">
+        <label>
+          <p>
+            Sistema para controle de estoque de acordo com instruções específicas.
+          </p>
+          <p class="w3-right">
+            Ricardo Sernaglia
+          </p>
+        </label>
+      </div>
+      <a href="index.html">Lista de produtos</a>
+      <a href="add-product.html">Novo produto</a>
+    </nav>
+
+    <div class="w3-main" style="margin-left:200px">
+
+      <header class="w3-container w3-teal">
+        <span class="w3-opennav w3-padding w3-left w3-xxxlarge w3-hide-large" onclick="w3_open()">&#9776;</span>
+        <h1 class="w3-left w3-padding">Produtos</h1>
+      </header>
+
+      <div class="w3-container">
+
+        <div class="w3-container w3-padding">
+          <input class="w3-check" type="checkbox" data-bind="checked: avail">
+          <label class="w3-validate">Disponíveis</label>
+        </div>
+
+        <div class="w3-container w3-padding w3-responsive">
+          <table class="w3-large w3-centered w3-table w3-bordered" data-bind="visible: products().length > 0">
+            <thead>
+              <tr class="w3-teal" data-bind="foreach: headers">
+                <td>
+                  <a href="#" data-bind="click: $parent.sortList, text: title"></a>
+                  <span data-bind="if: arrowDown"> ↓ </span>
+                  <span data-bind="if: arrowUp"> ↑ </span>
+                </td>
+              </tr>
+            </thead>
+            <tbody data-bind="foreach: products">
+              <tr data-bind="visible: units() > 0, if: $parent.avail">
+                <td>
+                  <span data-bind="text: name"></span>
+                </td>
+                <td>
+                  <span data-bind="text: $parent.formatCurrency(price)"></span>
+                </td>
+                <td>
+                  <span data-bind="text: units"></span>
+                </td>
+                <td>
+                  <button class="w3-btn-block w3-teal" data-bind="click: $parent.decreaseUnit">-</button>
+                </td>
+                <td>
+                  <button class="w3-btn-block w3-teal" data-bind="click: $parent.increaseUnit">+</button>
+                </td>
+              </tr>
+              <tr data-bind="visible: units() < 1, ifnot: $parent.avail">
+                <td>
+                  <span data-bind="text: name"></span>
+                </td>
+                <td>
+                  <span data-bind="text: $parent.formatCurrency(price)"></span>
+                </td>
+                <td>
+                  <span data-bind="text: units"></span>
+                </td>
+                <td>
+                  <button class="w3-btn-block w3-teal" data-bind="click: $parent.decreaseUnit">-</button>
+                </td>
+                <td>
+                  <button class="w3-btn-block w3-teal" data-bind="click: $parent.increaseUnit">+</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function w3_open() {
+        document.getElementById("mySidenav").style.display = "block";
+      }
+      function w3_close() {
+        document.getElementById("mySidenav").style.display = "none";
+      }
+    </script>
+    <script src="js/ko-binding.js" charset="utf-8"></script>
+  </body>
+</html>

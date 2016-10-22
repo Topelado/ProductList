@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/w3.css">
+    <script src="js/knockout.js"></script>
+    <script src="js/product.js"></script>
+    <script src="js/jquery.js"></script>
+    <title>Novo Produto</title>
+  </head>
+
+  <body>
+
+    <nav class="w3-sidenav w3-animate-left w3-card-8 w3-collapse w3-light-gray w3-large" style="width:200px" id="mySidenav">
+      <a href="#" onclick="w3_close()" class="w3-closenav w3-hide-large">Close &times;</a>
+      <a href="index.html">Lista de produtos</a>
+      <a href="add-product.html">Novo produto</a>
+    </nav>
+
+    <div class="w3-main" style="margin-left:200px">
+
+      <header class="w3-container w3-teal">
+        <span class="w3-opennav w3-padding w3-left w3-xxxlarge w3-hide-large" onclick="w3_open()">&#9776;</span>
+        <h1 class="w3-left w3-padding">Novo Produto</h1>
+      </header>
+
+      <div class="w3-container">
+        <form data-bind = "submit: addProduct">
+          <div class="w3-third w3-padding">
+            <input class="w3-input w3-border" type="text" placeholder="nome" data-bind="value: productName, hasfocus: productNameFocus"/>
+          </div>
+          <div class="w3-third w3-padding">
+            <input class="w3-input w3-border" type="value" placeholder="preço" data-bind="value: productPrice"/>
+          </div>
+          <div class="w3-third w3-padding">
+            <input class="w3-input w3-border" type="value" placeholder="estoque inicial" data-bind="value: productUnits"/>
+          </div>
+          <div class="w3-third w3-padding">
+            <button class="w3-btn-block w3-teal" type="submit">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function w3_open() {
+        document.getElementById("mySidenav").style.display = "block";
+      }
+      function w3_close() {
+        document.getElementById("mySidenav").style.display = "none";
+      }
+    </script>
+    <script src="js/ko-binding.js" charset="utf-8"></script>
+  </body>
+</html>
