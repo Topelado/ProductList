@@ -129,6 +129,7 @@ var ProductList = function(){
 	// NOTA: Criar função para deixar html mais limpo
 	// Controla status da checkbox de disponibilidade
 	this.avail = ko.observable(true);
+	this.notAvail = ko.observable(true);
 
 	// VALIDAÇÃO
 	// NOTA: Aumentar segurança

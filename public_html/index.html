@@ -37,13 +37,23 @@
 
       <div class="w3-container">
 
-        <div class="w3-container w3-padding">
+        <div class="w3-container w3-padding" data-bind="if: products().length > 0">
           <input class="w3-check" type="checkbox" data-bind="checked: avail">
           <label class="w3-validate">Disponíveis</label>
+          <input class="w3-check" type="checkbox" data-bind="checked: notAvail">
+          <label class="w3-validate">Indisponíveis</label>
+        </div>
+
+        <div class="w3-container w3-small" data-bind="if: products().length < 1">
+          <label>
+            <p>
+              Nenhum produto cadastrado. Crie novo produto acessando "Novo Produto" no menu à esquerda.
+            </p>
+          </label>
         </div>
 
         <div class="w3-container w3-padding w3-responsive">
-          <table class="w3-large w3-centered w3-table w3-bordered" data-bind="visible: products().length > 0">
+          <table class="w3-large w3-centered w3-table w3-bordered" data-bind="if: products().length > 0">
             <thead>
               <tr class="w3-teal" data-bind="foreach: headers">
                 <td>
@@ -71,7 +81,7 @@
                   <button class="w3-btn-block w3-teal" data-bind="click: $parent.increaseUnit">+</button>
                 </td>
               </tr>
-              <tr data-bind="visible: units() < 1, ifnot: $parent.avail">
+              <tr data-bind="visible: units() < 1, if: $parent.notAvail">
                 <td>
                   <span data-bind="text: name"></span>
                 </td>
